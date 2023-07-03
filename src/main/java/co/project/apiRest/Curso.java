@@ -10,6 +10,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Data;
 import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 
 /**
  *  API REST
@@ -21,17 +22,19 @@ import lombok.NonNull;
  * @since 1.0.0
  */
 @Data
-@Entity        //Añade los Getter y Setters
+@Entity
+@RequiredArgsConstructor  //Añade los Getter y Setters
 public class Curso {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    //@NonNull
+    @NonNull  // se puede utilizar junto con @RequiredArgsConstructor
     @NotBlank  //Para que no que de en blanco
     private String title;
 
+    @NonNull
     @NotNull
     @Positive  //Positive para que sea un valor positivo
     private Float price;

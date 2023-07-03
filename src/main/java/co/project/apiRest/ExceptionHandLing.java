@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice  //controlar exception de Notnull
 public class ExceptionHandLing {
 
+    //Manejar exceptions
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(ConstraintViolationException.class)
     ProblemDetail handleConstraintViolationException() {
-        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST);
+        //añadir texto declarativo sobre el error para el cliente
+        return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "La solicitud HTTP tiene errores");
     }
 }
